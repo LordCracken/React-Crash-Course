@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {createBrowserRouter, RouterProvider} from 'react-router';
+import {createBrowserRouter, redirect, RouterProvider} from 'react-router';
 
 import RootLayout from "./routes/RootLayout";
 import Posts from './routes/Posts';
@@ -16,6 +16,19 @@ const router = createBrowserRouter([
           const response = await fetch('http://localhost:8080/posts');
           const resData = await response.json();
           return resData.posts;
+        },
+        action: async ({request}) => {
+          const formData = await request.formData();
+          const postData = Object.entries(formData);
+          await fetch('http://localhost:8080/posts', {
+            method: "POST",
+            body: JSON.stringify(postData),
+            headers: {
+              "Content-Type": "application/json",
+            }
+          });
+
+          return redirect('/');
         },
         children: [{path: 'create-post', Component: NewPost}]},
     ]
