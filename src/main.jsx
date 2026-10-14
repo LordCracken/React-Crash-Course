@@ -9,7 +9,15 @@ import './index.css';
 
 const router = createBrowserRouter([
   {path: '/', Component: RootLayout, children: [
-      {path: '/', Component: Posts, children: [{path: 'create-post', Component: NewPost}]},
+      {
+        path: '/',
+        Component: Posts,
+        loader: async () => {
+          const response = await fetch('http://localhost:8080/posts');
+          const resData = await response.json();
+          return resData.posts;
+        },
+        children: [{path: 'create-post', Component: NewPost}]},
     ]
   },
 ]);
