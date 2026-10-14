@@ -5,10 +5,12 @@ import {createBrowserRouter, redirect, RouterProvider} from 'react-router';
 import RootLayout from "./routes/RootLayout";
 import Posts from './routes/Posts';
 import NewPost from "./routes/NewPost";
+import PostDetails from "./routes/PostDetails";
 import './index.css';
 
 const router = createBrowserRouter([
-  {path: '/', Component: RootLayout, children: [
+  {
+    path: '/', Component: RootLayout, children: [
       {
         path: '/',
         Component: Posts,
@@ -30,13 +32,41 @@ const router = createBrowserRouter([
 
           return redirect('/');
         },
-        children: [{path: 'create-post', Component: NewPost}]},
+        children: [
+          {
+            path: '/create-post',
+            Component: NewPost,
+            action: async ({request}) => {
+              const formData = await request.formData();
+              const postData = Object.fromEntries(formData); // { body: '...', author: '...' }
+              await fetch('http://localhost:8080/posts', {
+                method: 'POST',
+                body: JSON.stringify(postData),
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+
+              return redirect('/');
+            }
+          },
+          {
+            path: '/:postId',
+            Component: PostDetails,
+            loader: async ({params}) => {
+              const response = await fetch('http://localhost:8080/posts/' + params.postId);
+              const resData = await response.json();
+              return resData.post;
+            }
+          }
+        ]
+      },
     ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 )
