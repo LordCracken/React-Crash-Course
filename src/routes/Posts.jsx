@@ -5,9 +5,9 @@ import PostsList from "../components/PostsList";
 function Posts() {
   return (
     <>
-      <Outlet />
+      <Outlet/>
       <main>
-        <PostsList />
+        <PostsList/>
       </main>
     </>
   )

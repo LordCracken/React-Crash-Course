@@ -1,4 +1,4 @@
-import { useLoaderData, Link } from 'react-router';
+import {Link, useLoaderData} from 'react-router';
 
 import Modal from '../components/Modal';
 import classes from './PostDetails.module.css';

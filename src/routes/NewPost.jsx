@@ -9,11 +9,11 @@ function NewPost() {
       <Form method="post" className={classes.form}>
         <p>
           <label htmlFor="body">Text</label>
-          <textarea id="body" name="body" required rows={3} />
+          <textarea id="body" name="body" required rows={3}/>
         </p>
         <p>
           <label htmlFor="name">Your name</label>
-          <input type="text" id="name" name="author" required />
+          <input type="text" id="name" name="author" required/>
         </p>
         <p className={classes.actions}>
           <Link to=".." type="button">Cancel</Link>
