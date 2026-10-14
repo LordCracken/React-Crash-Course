@@ -1,16 +1,17 @@
-# React + Vite
+# React Crash Course
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A refresher React course from Academind school. It covers:
+- React basics
+- Styling in React
+- Work with state
+- React Router
+- Routing configuration
+- Loaders, actions, forms handling
+- Dynamic routes
 
-Currently, two official plugins are available:
+The app is a service with small posts. Posts present as cards on index page. From header a new post
+button can be clicked to open new post form where body and author fields can be entered. After sending
+data the new post will appear on main screen. A single post card can be clicked to open the post
+separately.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The course's project has a backend part which can be started on the same machine.
